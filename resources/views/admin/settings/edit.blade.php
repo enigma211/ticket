@@ -17,7 +17,14 @@
                 </div>
                 <div>
                     <label class="block text-sm mb-1">لوگو</label>
-                    <input type="file" name="logo" />
+                    @if($setting->logo_path)
+                        <div class="mb-2">
+                            <p class="text-xs text-gray-500 mb-1">لوگوی فعلی:</p>
+                            <img src="{{ asset('storage/' . $setting->logo_path) }}" alt="لوگوی فعلی" class="w-16 h-16 object-contain border rounded" />
+                        </div>
+                    @endif
+                    <input type="file" name="logo" accept="image/*" />
+                    <p class="text-xs text-gray-500 mt-1">فرمت‌های مجاز: JPG, PNG, GIF. حداکثر حجم: 2MB</p>
                     @error('logo')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                 </div>
             </div>

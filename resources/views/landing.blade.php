@@ -11,7 +11,15 @@
     <header class="border-b bg-white/80 backdrop-blur">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="{{ asset('storage/logos/AqquFLOQxDxAHPom7sxOVFejAsB3b7Fxu1irz0YS.png') }}" alt="لوگو" class="w-10 h-10 rounded" />
+                @if(settings('logo_path'))
+                    <img src="{{ asset('storage/' . settings('logo_path')) }}" alt="لوگو" class="w-10 h-10 rounded object-contain" />
+                @else
+                    <div class="w-10 h-10 rounded bg-primary flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                        </svg>
+                    </div>
+                @endif
                 <div class="font-extrabold text-gray-900">{{ settings('site_name') ?? 'سامانه تیکت' }}</div>
             </div>
             <nav class="flex items-center gap-3 text-sm">
