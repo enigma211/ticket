@@ -14,7 +14,7 @@ Route::middleware('guest')->group(function () {
     // Allow up to 5 attempts within the cooldown window (was 1 attempt, too strict)
     $loginThrottle = "throttle:5,{$loginCooldown}";
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('login', [AuthenticatedSessionController::class, 'store'])->middleware($loginThrottle)->name('login');
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])->middleware($loginThrottle);
 
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
