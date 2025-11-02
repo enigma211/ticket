@@ -13,13 +13,18 @@ if (!function_exists('settings')) {
      */
     function settings($key = null, $default = null)
     {
-        $settings = Setting::instance();
+        try {
+            $settings = Setting::instance();
 
-        if ($key === null) {
-            return $settings;
+            if ($key === null) {
+                return $settings;
+            }
+
+            return $settings->getAttribute($key) ?? $default;
+        } catch (\Exception $e) {
+            // Return default if table doesn't exist (during migration)
+            return $default;
         }
-
-        return $settings->getAttribute($key) ?? $default;
     }
 }
 
